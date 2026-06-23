@@ -1,4 +1,30 @@
 (function () {
+  const POST_SCHEDULE_OVERRIDES = {
+    31: '2026-06-30T19:00:00+09:00',
+    32: '2026-07-02T19:00:00+09:00',
+    33: '2026-07-04T19:00:00+09:00',
+    34: '2026-07-06T19:00:00+09:00',
+    35: '2026-07-08T19:00:00+09:00',
+    36: '2026-07-10T19:00:00+09:00',
+    37: '2026-07-12T19:00:00+09:00',
+    38: '2026-07-14T19:00:00+09:00',
+    39: '2026-07-16T19:00:00+09:00',
+    40: '2026-07-18T19:00:00+09:00'
+  };
+
+  function applyPostScheduleOverrides() {
+    if (!Array.isArray(window.AG_POSTS) && !Array.isArray(globalThis.AG_POSTS)) return;
+
+    const posts = Array.isArray(window.AG_POSTS) ? window.AG_POSTS : globalThis.AG_POSTS;
+    posts.forEach(function (post) {
+      if (post && POST_SCHEDULE_OVERRIDES[post.seq]) {
+        post.publishAt = POST_SCHEDULE_OVERRIDES[post.seq];
+      }
+    });
+  }
+
+  applyPostScheduleOverrides();
+
   function parsePublishDate(element) {
     const value = element.getAttribute('data-publish-at');
     if (!value) return null;
