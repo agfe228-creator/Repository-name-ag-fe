@@ -12,10 +12,20 @@
     40: '2026-07-18T19:00:00+09:00'
   };
 
-  function applyPostScheduleOverrides() {
-    if (!Array.isArray(window.AG_POSTS) && !Array.isArray(globalThis.AG_POSTS)) return;
+  function getPostData() {
+    try {
+      if (Array.isArray(AG_POSTS)) return AG_POSTS;
+    } catch (error) {
+      return null;
+    }
 
-    const posts = Array.isArray(window.AG_POSTS) ? window.AG_POSTS : globalThis.AG_POSTS;
+    return null;
+  }
+
+  function applyPostScheduleOverrides() {
+    const posts = getPostData();
+    if (!posts) return;
+
     posts.forEach(function (post) {
       if (post && POST_SCHEDULE_OVERRIDES[post.seq]) {
         post.publishAt = POST_SCHEDULE_OVERRIDES[post.seq];
