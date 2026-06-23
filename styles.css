@@ -82,7 +82,10 @@ table { width: 100%; border-collapse: collapse; background: #fff; }
 td { padding: 11px 12px; border: 1px solid var(--line); vertical-align: top; }
 tr:first-child td { background: #f8fafc; color: var(--ink); font-weight: 900; }
 .check-list { display: grid; gap: 10px; padding-left: 20px; }
-.doc-link, .related-posts { padding: 18px; background: #f8fafc; border: 1px solid var(--line); }
+.doc-link, .related-posts, .eeat-box, .author-box { padding: 18px; background: #f8fafc; border: 1px solid var(--line); }
+.eeat-box { border-left: 4px solid var(--teal); }
+.author-box { border-left: 4px solid var(--blue); }
+.author-box strong { color: var(--ink); }
 .doc-link a, .related-posts a { color: var(--blue); font-weight: 900; }
 .empty-note { grid-column: 1 / -1; padding: 22px; background: #fff; border: 1px solid var(--line); color: var(--muted); }
 .footer { border-top: 1px solid var(--line); background: #172033; color: #fff; padding: 34px 0; }
