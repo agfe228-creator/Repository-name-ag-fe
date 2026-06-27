@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Git과 GitHub 차이 도식</title>
+  <desc id="desc">내 컴퓨터의 Git 기록이 GitHub 원격 저장소로 올라가는 흐름</desc>
+  <rect width="960" height="420" fill="#f8fafc"/>
+  <text x="70" y="72" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#0f172a">Git vs GitHub</text>
+  <text x="70" y="112" font-family="Arial, sans-serif" font-size="18" fill="#475569">Git은 기록 도구, GitHub는 그 기록을 올려 협업하는 서비스입니다.</text>
+  <rect x="100" y="160" width="285" height="170" rx="22" fill="#fff" stroke="#cbd5e1"/>
+  <text x="137" y="212" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#0f172a">내 컴퓨터</text>
+  <text x="137" y="254" font-family="Arial, sans-serif" font-size="20" fill="#334155">Git</text>
+  <text x="137" y="286" font-family="Arial, sans-serif" font-size="16" fill="#64748b">commit으로 변경 기록 저장</text>
+  <path d="M420 245h120" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+  <path d="M528 224l28 21-28 21" fill="none" stroke="#2563eb" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="449" y="215" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#2563eb">push</text>
+  <rect x="590" y="160" width="285" height="170" rx="22" fill="#111827"/>
+  <text x="627" y="212" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#fff">GitHub</text>
+  <text x="627" y="254" font-family="Arial, sans-serif" font-size="20" fill="#e5e7eb">원격 저장소</text>
+  <text x="627" y="286" font-family="Arial, sans-serif" font-size="16" fill="#cbd5e1">공유, 백업, 협업, 배포 연결</text>
+</svg>
