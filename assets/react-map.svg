@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">React map 목록 출력 도식</title>
+  <desc id="desc">데이터 배열이 map을 통해 여러 개의 JSX 항목으로 렌더링되는 흐름</desc>
+  <rect width="960" height="420" fill="#f8fafc"/>
+  <text x="70" y="72" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#0f172a">React 목록 렌더링</text>
+  <text x="70" y="112" font-family="Arial, sans-serif" font-size="18" fill="#475569">배열 데이터 하나하나를 JSX 요소로 바꾸어 화면에 반복 출력합니다.</text>
+  <rect x="90" y="165" width="270" height="160" rx="18" fill="#fff" stroke="#cbd5e1"/>
+  <text x="122" y="210" font-family="Consolas, monospace" font-size="19" fill="#334155">todos.map(todo =&gt;</text>
+  <text x="152" y="245" font-family="Consolas, monospace" font-size="19" fill="#334155">&lt;li key={todo.id}&gt;</text>
+  <text x="182" y="280" font-family="Consolas, monospace" font-size="19" fill="#334155">{todo.text}</text>
+  <text x="152" y="315" font-family="Consolas, monospace" font-size="19" fill="#334155">&lt;/li&gt;)</text>
+  <path d="M400 245h120" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+  <path d="M508 224l28 21-28 21" fill="none" stroke="#2563eb" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="580" y="155" width="290" height="190" rx="18" fill="#111827"/>
+  <g font-family="Arial, sans-serif" font-size="19" font-weight="700">
+    <rect x="625" y="190" width="200" height="42" rx="10" fill="#dbeafe"/>
+    <text x="650" y="217" fill="#1e3a8a">HTML 복습하기</text>
+    <rect x="625" y="245" width="200" height="42" rx="10" fill="#dcfce7"/>
+    <text x="650" y="272" fill="#14532d">CSS 정리하기</text>
+    <rect x="625" y="300" width="200" height="42" rx="10" fill="#ffedd5"/>
+    <text x="650" y="327" fill="#9a3412">React 실습하기</text>
+  </g>
+</svg>
