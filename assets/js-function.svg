@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">함수 선언식과 화살표 함수 비교 도식</title>
+  <desc id="desc">두 함수 문법이 같은 입력을 받아 같은 결과를 반환하는 예</desc>
+  <rect width="960" height="420" fill="#f8fafc"/>
+  <text x="70" y="72" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#0f172a">Function vs Arrow</text>
+  <rect x="80" y="145" width="380" height="190" rx="20" fill="#fff" stroke="#cbd5e1"/>
+  <text x="115" y="192" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">함수 선언식</text>
+  <text x="115" y="242" font-family="Consolas, monospace" font-size="20" fill="#334155">function add(a, b) {</text>
+  <text x="145" y="274" font-family="Consolas, monospace" font-size="20" fill="#334155">return a + b;</text>
+  <text x="115" y="306" font-family="Consolas, monospace" font-size="20" fill="#334155">}</text>
+  <rect x="500" y="145" width="380" height="190" rx="20" fill="#111827"/>
+  <text x="535" y="192" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#fff">화살표 함수</text>
+  <text x="535" y="252" font-family="Consolas, monospace" font-size="20" fill="#e5e7eb">const add = (a, b) =&gt; a + b;</text>
+  <text x="335" y="380" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#2563eb">둘 다 add(2, 3) → 5</text>
+</svg>
