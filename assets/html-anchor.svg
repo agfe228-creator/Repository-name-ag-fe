@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">a 태그 링크 구조 도식</title>
+  <desc id="desc">a 태그의 href, 링크 텍스트, target 속성이 하는 역할</desc>
+  <rect width="960" height="420" fill="#f8fafc"/>
+  <text x="70" y="72" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#0f172a">&lt;a&gt; 링크 구조</text>
+  <rect x="100" y="150" width="760" height="120" rx="20" fill="#fff" stroke="#cbd5e1"/>
+  <text x="135" y="222" font-family="Consolas, monospace" font-size="30" fill="#0f172a">&lt;a href="/about.html" target="_blank"&gt;소개 보기&lt;/a&gt;</text>
+  <path d="M228 250v70" stroke="#2563eb" stroke-width="4"/>
+  <path d="M544 250v70" stroke="#16a34a" stroke-width="4"/>
+  <path d="M682 250v70" stroke="#f97316" stroke-width="4"/>
+  <g font-family="Arial, sans-serif" font-size="17" font-weight="700">
+    <rect x="130" y="320" width="195" height="48" rx="12" fill="#dbeafe"/>
+    <text x="165" y="351" fill="#1e3a8a">href: 이동할 주소</text>
+    <rect x="455" y="320" width="185" height="48" rx="12" fill="#dcfce7"/>
+    <text x="490" y="351" fill="#14532d">target: 열 방식</text>
+    <rect x="662" y="320" width="175" height="48" rx="12" fill="#ffedd5"/>
+    <text x="700" y="351" fill="#9a3412">텍스트: 클릭 영역</text>
+  </g>
+</svg>
