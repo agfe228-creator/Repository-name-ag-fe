@@ -25,6 +25,15 @@
     '체크리스트형': '체크리스트형 글은 빠르게 점검하기 위한 글입니다. 이미 알고 있는 항목도 실제 파일이나 화면에서 한 번씩 확인하는 방식으로 활용하세요.'
   };
 
+  const EXAMPLE_GUIDES = {
+    html: { title: '브라우저에서 구조 확인하기', body: ['HTML 예제는 화면 결과만 보면 태그의 역할이 흐릿해질 수 있습니다. 개발자 도구에서 부모와 자식 태그가 의도한 순서로 들어갔는지 확인해보세요.', '링크, 이미지, 폼처럼 다른 기능과 연결되는 태그는 경로와 속성 이름을 함께 보는 것이 좋습니다. 작은 오타 하나가 전체 동작을 막을 수 있습니다.'] },
+    css: { title: '스타일이 적용되는 범위 확인하기', body: ['CSS 예제는 어떤 선택자가 어떤 요소에 적용되는지 먼저 확인해야 합니다. 개발자 도구의 Styles 패널에서 실제로 적용된 속성과 덮어쓴 속성을 비교해보세요.', '여백이나 정렬 문제는 속성값만 바꾸기보다 부모 요소의 크기, display 값, box-sizing을 함께 확인하면 원인을 더 빨리 찾을 수 있습니다.'] },
+    javascript: { title: '값과 실행 순서 따라가기', body: ['JavaScript 예제는 console.log로 중간 값을 확인하면서 읽으면 흐름이 선명해집니다. 변수에 어떤 값이 들어가는지, 함수가 언제 실행되는지 순서대로 따라가보세요.', 'DOM을 다루는 코드는 HTML 요소가 만들어진 뒤 실행되는지도 중요합니다. 선택 결과가 null이면 선택자와 스크립트 위치를 함께 확인하세요.'] },
+    react: { title: '상태 변화가 화면에 반영되는지 보기', body: ['React 예제는 값이 props인지 state인지 구분하면서 읽는 것이 좋습니다. 화면이 바뀌는 지점은 대부분 state 변경이나 부모에서 내려온 값과 연결됩니다.', '이벤트 예제는 함수가 렌더링 중 바로 실행되는지, 클릭이나 입력 시점에 실행되는지 확인하세요. 이 차이만 잡아도 초보 오류가 크게 줄어듭니다.'] },
+    git: { title: '명령 전후 상태 확인하기', body: ['Git 예제는 명령어 자체보다 명령 전후 상태가 중요합니다. status, log처럼 현재 상태를 보여주는 명령을 함께 보면 흐름을 놓치지 않습니다.', '커밋과 배포 관련 글은 실제 파일이 어디에 있고 어느 브랜치가 기준인지 확인해야 합니다. 저장소 화면과 로컬 작업 상태가 다르면 결과가 달라질 수 있습니다.'] },
+    web: { title: '설정이 연결되는 흐름 확인하기', body: ['웹 기초 예제는 도메인, HTTPS, 배포처럼 여러 설정이 이어지는 경우가 많습니다. 주소가 어디를 가리키고, 어떤 서비스가 파일을 제공하는지 나누어 보세요.', '문제가 생기면 마지막 화면만 보지 말고 DNS, 배포 상태, 브라우저 주소를 차례대로 확인하는 것이 좋습니다.'] }
+  };
+
   function sourceName(post) {
     if (!post.doc) return '사이트 운영 경험과 웹 기본 원칙';
     if (post.doc === 'react') return 'React 공식 문서';
@@ -54,7 +63,7 @@
       headline: post.title,
       description: post.summary,
       datePublished: post.publishAt,
-      dateModified: '2026-06-23T09:00:00+09:00',
+      dateModified: '2026-06-27T09:00:00+09:00',
       author: { '@type': 'Organization', name: AUTHOR.name },
       publisher: { '@type': 'Organization', name: 'AG FE Guide' },
       mainEntityOfPage: location.href
@@ -72,12 +81,17 @@
     </section>`;
   }
 
+  function exampleGuide(post) {
+    const guide = EXAMPLE_GUIDES[post.category] || EXAMPLE_GUIDES.web;
+    return `<section><h2>${guide.title}</h2>${guide.body.map(function (text) { return '<p>' + text + '</p>'; }).join('')}</section>`;
+  }
+
   function authorBox(post) {
     return `<section class="author-box">
-      <h2>작성 기준</h2>
+      <h2>검토와 보완 기준</h2>
       <p><strong>${AUTHOR.name}</strong>은 초보자가 실제 학습 중 자주 만나는 오류와 헷갈리는 용어를 기준으로 글을 구성합니다.</p>
-      <p>이 글은 ${sourceName(post)}와 브라우저에서 직접 확인 가능한 예제를 함께 참고해 작성했으며, 공개 후 내용이 바뀔 수 있는 부분은 주기적으로 보완합니다.</p>
-      <p class="meta">최초 공개: ${agFormatDate(post.publishAt)} · 최근 검토: 2026. 6. 23.</p>
+      <p>이 글은 ${sourceName(post)}와 브라우저에서 직접 확인 가능한 예제를 함께 참고해 작성했으며, 공개 후 문서나 도구 화면이 바뀌면 내용을 보완합니다.</p>
+      <p class="meta">최초 공개: ${agFormatDate(post.publishAt)} · 최근 검토: 2026. 6. 27.</p>
     </section>`;
   }
 
@@ -117,7 +131,7 @@
       ${enhancedDetails(post)}
       ${compare}
       <section><h2>${post.codeTitle} 예제</h2><pre><code>${agEscape(post.code)}</code></pre></section>
-      <section><h2>예제를 볼 때 확인할 부분</h2><p>코드를 따라 쓸 때는 결과만 맞추기보다 이름, 위치, 실행 순서를 함께 확인하는 것이 좋습니다. 작은 예제라도 어떤 줄이 화면이나 데이터에 영향을 주는지 찾으면 비슷한 문제를 만났을 때 응용하기 쉽습니다.</p><p>${AG_CATEGORIES[post.category]} 학습에서는 한 번에 많은 문법을 외우기보다 같은 예제를 조금씩 바꿔보는 방식이 오래 남습니다. 에러가 나면 메시지를 먼저 읽고, 방금 바꾼 줄부터 되짚어보세요.</p></section>
+      ${exampleGuide(post)}
       ${checklist}
       ${betterDocLink(post)}
       ${authorBox(post)}
