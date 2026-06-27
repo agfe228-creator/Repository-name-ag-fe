@@ -12,6 +12,68 @@
     40: '2026-07-18T19:00:00+09:00'
   };
 
+  function injectPolishStyles() {
+    if (document.querySelector('style[data-ag-polish]')) return;
+
+    const style = document.createElement('style');
+    style.setAttribute('data-ag-polish', 'true');
+    style.textContent = `
+      .article-visual {
+        margin: 26px 0 34px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+      .article-visual img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .article-visual figcaption {
+        padding: 10px 14px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .comparison-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 16px;
+      }
+      .comparison-grid h3 {
+        margin: 0 0 10px;
+        font-size: 18px;
+      }
+      .comparison-grid pre {
+        min-height: 170px;
+        margin: 0;
+      }
+      @media (max-width: 760px) {
+        .category-inner {
+          gap: 10px;
+          padding: 0 2px 4px;
+          scrollbar-width: thin;
+        }
+        .category-inner a {
+          padding: 14px 0 12px;
+          font-size: 14px;
+          white-space: nowrap;
+        }
+        .menu-icon {
+          width: 16px;
+          margin-right: 2px;
+        }
+        .comparison-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   function getPostData() {
     try {
       if (Array.isArray(AG_POSTS)) return AG_POSTS;
@@ -33,6 +95,7 @@
     });
   }
 
+  injectPolishStyles();
   applyPostScheduleOverrides();
 
   function parsePublishDate(element) {
