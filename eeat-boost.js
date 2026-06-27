@@ -25,13 +25,52 @@
     '체크리스트형': '체크리스트형 글은 빠르게 점검하기 위한 글입니다. 이미 알고 있는 항목도 실제 파일이나 화면에서 한 번씩 확인하는 방식으로 활용하세요.'
   };
 
-  const EXAMPLE_GUIDES = {
-    html: { title: '브라우저에서 구조 확인하기', body: ['HTML 예제는 화면 결과만 보면 태그의 역할이 흐릿해질 수 있습니다. 개발자 도구에서 부모와 자식 태그가 의도한 순서로 들어갔는지 확인해보세요.', '링크, 이미지, 폼처럼 다른 기능과 연결되는 태그는 경로와 속성 이름을 함께 보는 것이 좋습니다. 작은 오타 하나가 전체 동작을 막을 수 있습니다.'] },
-    css: { title: '스타일이 적용되는 범위 확인하기', body: ['CSS 예제는 어떤 선택자가 어떤 요소에 적용되는지 먼저 확인해야 합니다. 개발자 도구의 Styles 패널에서 실제로 적용된 속성과 덮어쓴 속성을 비교해보세요.', '여백이나 정렬 문제는 속성값만 바꾸기보다 부모 요소의 크기, display 값, box-sizing을 함께 확인하면 원인을 더 빨리 찾을 수 있습니다.'] },
-    javascript: { title: '값과 실행 순서 따라가기', body: ['JavaScript 예제는 console.log로 중간 값을 확인하면서 읽으면 흐름이 선명해집니다. 변수에 어떤 값이 들어가는지, 함수가 언제 실행되는지 순서대로 따라가보세요.', 'DOM을 다루는 코드는 HTML 요소가 만들어진 뒤 실행되는지도 중요합니다. 선택 결과가 null이면 선택자와 스크립트 위치를 함께 확인하세요.'] },
-    react: { title: '상태 변화가 화면에 반영되는지 보기', body: ['React 예제는 값이 props인지 state인지 구분하면서 읽는 것이 좋습니다. 화면이 바뀌는 지점은 대부분 state 변경이나 부모에서 내려온 값과 연결됩니다.', '이벤트 예제는 함수가 렌더링 중 바로 실행되는지, 클릭이나 입력 시점에 실행되는지 확인하세요. 이 차이만 잡아도 초보 오류가 크게 줄어듭니다.'] },
-    git: { title: '명령 전후 상태 확인하기', body: ['Git 예제는 명령어 자체보다 명령 전후 상태가 중요합니다. status, log처럼 현재 상태를 보여주는 명령을 함께 보면 흐름을 놓치지 않습니다.', '커밋과 배포 관련 글은 실제 파일이 어디에 있고 어느 브랜치가 기준인지 확인해야 합니다. 저장소 화면과 로컬 작업 상태가 다르면 결과가 달라질 수 있습니다.'] },
-    web: { title: '설정이 연결되는 흐름 확인하기', body: ['웹 기초 예제는 도메인, HTTPS, 배포처럼 여러 설정이 이어지는 경우가 많습니다. 주소가 어디를 가리키고, 어떤 서비스가 파일을 제공하는지 나누어 보세요.', '문제가 생기면 마지막 화면만 보지 말고 DNS, 배포 상태, 브라우저 주소를 차례대로 확인하는 것이 좋습니다.'] }
+  const VISUALS = {
+    1: ['assets/html-structure.svg', 'HTML 문서 구조를 head와 body로 나누어 보여주는 도식'],
+    2: ['assets/css-selector.svg', 'class와 id 사용 범위를 비교한 도식'],
+    17: ['assets/flex-center.svg', 'flex 가운데 정렬 기준선을 보여주는 도식'],
+    19: ['assets/react-effect.svg', 'React 렌더링과 effect 실행 흐름 도식'],
+    23: ['assets/js-filter-find.svg', 'filter와 find 결과 차이를 보여주는 배열 도식'],
+    15: ['assets/git-commit.svg', 'Git edit, add, commit 흐름 도식']
+  };
+
+  const DEEP_DIVES = {
+    1: {
+      title: 'HTML 기본 구조에서 자주 틀리는 예',
+      wrong: '<html>\n<title>첫 페이지</title>\n<h1>안녕하세요</h1>\n</html>',
+      right: '<!doctype html>\n<html lang="ko">\n<head>\n  <meta charset="utf-8">\n  <title>첫 페이지</title>\n</head>\n<body>\n  <h1>안녕하세요</h1>\n</body>\n</html>',
+      body: '잘못된 예시는 브라우저가 어느 정도 보정해줄 수 있지만, 문서 구조가 불명확합니다. 검색엔진과 브라우저가 읽을 정보는 head에 두고, 실제 화면에 보이는 내용은 body에 두는 습관이 중요합니다.'
+    },
+    2: {
+      title: 'class와 id를 섞어 쓸 때 생기는 문제',
+      wrong: '<button id="btn">저장</button>\n<button id="btn">취소</button>\n<style>#btn { padding: 10px; }</style>',
+      right: '<button class="btn" id="saveButton">저장</button>\n<button class="btn" id="cancelButton">취소</button>\n<style>.btn { padding: 10px; }</style>',
+      body: '같은 id를 여러 번 쓰면 JavaScript에서 특정 요소를 찾을 때 예측하기 어려워집니다. 반복되는 모양은 class로 만들고, 정말 하나만 집어야 하는 요소에만 id를 주는 편이 안전합니다.'
+    },
+    15: {
+      title: '커밋 전에 확인해야 할 실제 흐름',
+      wrong: 'git add .\ngit commit -m "수정"',
+      right: 'git status\ngit diff\ngit add index.html styles.css\ngit commit -m "홈 카드 간격 정리"',
+      body: '무조건 전체 파일을 add하면 임시 파일이나 의도하지 않은 수정까지 함께 기록될 수 있습니다. 먼저 status와 diff로 바뀐 내용을 확인하고, 하나의 목적에 맞는 파일만 묶는 것이 좋습니다.'
+    },
+    17: {
+      title: 'flex 가운데 정렬이 실패하는 흔한 경우',
+      wrong: '.login-box {\n  justify-content: center;\n  align-items: center;\n}',
+      right: '.page-center {\n  min-height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.login-box { width: 320px; }',
+      body: '정렬 속성은 보통 정렬하려는 요소가 아니라 그 부모에게 줍니다. 부모가 flex 컨테이너가 아니거나 높이가 부족하면 세로 중앙 정렬은 기대한 대로 보이지 않습니다.'
+    },
+    19: {
+      title: 'useEffect에 넣지 않아도 되는 코드 구분하기',
+      wrong: 'React.useEffect(() => {\n  setTotal(price * count);\n}, [price, count]);',
+      right: 'const total = price * count;\n\nReact.useEffect(() => {\n  document.title = `총액 ${total}원`;\n}, [total]);',
+      body: '단순 계산은 렌더링 중 바로 구해도 됩니다. useEffect는 문서 제목 변경, 네트워크 요청, 구독처럼 React 바깥의 시스템과 맞춰야 하는 작업에 쓰는 편이 더 자연스럽습니다.'
+    },
+    23: {
+      title: 'filter와 find 선택을 잘못했을 때',
+      wrong: 'const cssPost = posts.filter((post) => post.id === 3);\nconsole.log(cssPost.title);',
+      right: 'const cssPost = posts.find((post) => post.id === 3);\nif (cssPost) {\n  console.log(cssPost.title);\n}',
+      body: 'filter는 배열을 돌려주기 때문에 바로 title을 읽을 수 없습니다. 특정 id 하나를 찾는 상황이면 find가 더 맞고, 찾지 못할 경우 undefined가 될 수 있으니 존재 여부도 함께 확인해야 합니다.'
+    }
   };
 
   function sourceName(post) {
@@ -43,13 +82,13 @@
   }
 
   function headingFor(post, fallback) {
-    const category = AG_CATEGORIES[post.category] || '웹 개발';
-    if (post.type && post.type.indexOf('비교') >= 0) return category + '에서 헷갈리기 쉬운 기준';
-    if (post.type && post.type.indexOf('실습') >= 0) return '예제로 따라 해볼 핵심 흐름';
-    if (post.type && post.type.indexOf('문제') >= 0) return '문제가 생겼을 때 확인할 순서';
-    if (post.type && post.type.indexOf('실수') >= 0) return '초보자가 자주 놓치는 부분';
-    if (post.type && post.type.indexOf('흐름') >= 0) return '작업 흐름을 이해하는 방법';
-    return fallback;
+    const compactTitle = post.title.replace('쉽게 ', '').replace('정리', '').replace('이해하기', '').trim();
+    if (post.type && post.type.indexOf('비교') >= 0) return compactTitle + '의 선택 기준';
+    if (post.type && post.type.indexOf('실습') >= 0) return compactTitle + ' 실습 흐름';
+    if (post.type && post.type.indexOf('문제') >= 0) return compactTitle + ' 문제를 좁히는 순서';
+    if (post.type && post.type.indexOf('실수') >= 0) return compactTitle + '에서 놓치기 쉬운 부분';
+    if (post.type && post.type.indexOf('흐름') >= 0) return compactTitle + '을 작업 순서로 보기';
+    return fallback === '먼저 이해할 점' ? compactTitle + ' 먼저 보기' : fallback;
   }
 
   function addJsonLd(post) {
@@ -63,12 +102,18 @@
       headline: post.title,
       description: post.summary,
       datePublished: post.publishAt,
-      dateModified: '2026-06-27T09:00:00+09:00',
+      dateModified: '2026-06-27T15:30:00+09:00',
       author: { '@type': 'Organization', name: AUTHOR.name },
       publisher: { '@type': 'Organization', name: 'AG FE Guide' },
       mainEntityOfPage: location.href
     });
     document.head.appendChild(script);
+  }
+
+  function articleVisual(post) {
+    const visual = VISUALS[post.seq];
+    if (!visual) return '';
+    return `<figure class="article-visual"><img src="${visual[0]}" alt="${visual[1]}" loading="lazy"><figcaption>${visual[1]}</figcaption></figure>`;
   }
 
   function enhancedDetails(post) {
@@ -81,14 +126,28 @@
     </section>`;
   }
 
+  function deepDive(post) {
+    const item = DEEP_DIVES[post.seq];
+    if (!item) return '';
+    return `<section class="code-comparison"><h2>${item.title}</h2><p>${item.body}</p><div class="comparison-grid"><div><h3>잘못된 예</h3><pre><code>${agEscape(item.wrong)}</code></pre></div><div><h3>수정한 예</h3><pre><code>${agEscape(item.right)}</code></pre></div></div><p>확인할 때는 결과 화면만 보지 말고, 코드가 어떤 기준으로 바뀌었는지 한 줄씩 비교해보는 것이 좋습니다.</p></section>`;
+  }
+
   function exampleGuide(post) {
-    const guide = EXAMPLE_GUIDES[post.category] || EXAMPLE_GUIDES.web;
-    return `<section><h2>${guide.title}</h2>${guide.body.map(function (text) { return '<p>' + text + '</p>'; }).join('')}</section>`;
+    const category = AG_CATEGORIES[post.category] || '웹 개발';
+    const guide = {
+      html: ['브라우저에서 ' + post.title + ' 확인하기', ['HTML 예제는 화면 결과만 보면 태그의 역할이 흐릿해질 수 있습니다. 개발자 도구에서 부모와 자식 태그가 의도한 순서로 들어갔는지 확인해보세요.', '링크, 이미지, 폼처럼 다른 기능과 연결되는 태그는 경로와 속성 이름을 함께 보는 것이 좋습니다. 작은 오타 하나가 전체 동작을 막을 수 있습니다.']],
+      css: [post.title + ' 적용 범위 확인하기', ['CSS 예제는 어떤 선택자가 어떤 요소에 적용되는지 먼저 확인해야 합니다. 개발자 도구의 Styles 패널에서 실제로 적용된 속성과 덮어쓴 속성을 비교해보세요.', '여백이나 정렬 문제는 속성값만 바꾸기보다 부모 요소의 크기, display 값, box-sizing을 함께 확인하면 원인을 더 빨리 찾을 수 있습니다.']],
+      javascript: [post.title + ' 실행 순서 따라가기', ['JavaScript 예제는 console.log로 중간 값을 확인하면서 읽으면 흐름이 선명해집니다. 변수에 어떤 값이 들어가는지, 함수가 언제 실행되는지 순서대로 따라가보세요.', 'DOM을 다루는 코드는 HTML 요소가 만들어진 뒤 실행되는지도 중요합니다. 선택 결과가 null이면 선택자와 스크립트 위치를 함께 확인하세요.']],
+      react: [post.title + ' 화면 변화 확인하기', ['React 예제는 값이 props인지 state인지 구분하면서 읽는 것이 좋습니다. 화면이 바뀌는 지점은 대부분 state 변경이나 부모에서 내려온 값과 연결됩니다.', '이벤트 예제는 함수가 렌더링 중 바로 실행되는지, 클릭이나 입력 시점에 실행되는지 확인하세요. 이 차이만 잡아도 초보 오류가 크게 줄어듭니다.']],
+      git: [post.title + ' 전후 상태 확인하기', ['Git 예제는 명령어 자체보다 명령 전후 상태가 중요합니다. status, log처럼 현재 상태를 보여주는 명령을 함께 보면 흐름을 놓치지 않습니다.', '커밋과 배포 관련 글은 실제 파일이 어디에 있고 어느 브랜치가 기준인지 확인해야 합니다. 저장소 화면과 로컬 작업 상태가 다르면 결과가 달라질 수 있습니다.']],
+      web: [post.title + ' 연결 흐름 확인하기', ['웹 기초 예제는 도메인, HTTPS, 배포처럼 여러 설정이 이어지는 경우가 많습니다. 주소가 어디를 가리키고, 어떤 서비스가 파일을 제공하는지 나누어 보세요.', '문제가 생기면 마지막 화면만 보지 말고 DNS, 배포 상태, 브라우저 주소를 차례대로 확인하는 것이 좋습니다.']]
+    }[post.category] || [category + ' 확인 방법', ['예제를 그대로 읽기보다 실제 화면에서 어떤 변화가 생기는지 확인해보세요.']];
+    return `<section><h2>${guide[0]}</h2>${guide[1].map(function (text) { return '<p>' + text + '</p>'; }).join('')}</section>`;
   }
 
   function authorBox(post) {
     return `<section class="author-box">
-      <h2>검토와 보완 기준</h2>
+      <h2>${post.title} 검토 기준</h2>
       <p><strong>${AUTHOR.name}</strong>은 초보자가 실제 학습 중 자주 만나는 오류와 헷갈리는 용어를 기준으로 글을 구성합니다.</p>
       <p>이 글은 ${sourceName(post)}와 브라우저에서 직접 확인 가능한 예제를 함께 참고해 작성했으며, 공개 후 문서나 도구 화면이 바뀌면 내용을 보완합니다.</p>
       <p class="meta">최초 공개: ${agFormatDate(post.publishAt)} · 최근 검토: 2026. 6. 27.</p>
@@ -119,18 +178,21 @@
     }
 
     const related = (post.related || []).map(agPostBySeq).filter(Boolean).filter(agPublished).slice(0, 2);
-    const compare = post.compare ? `<section><h2>${post.title.indexOf('차이') >= 0 ? '한눈에 보는 차이' : '비교해서 확인하기'}</h2><table><tbody>${post.compare.map(function (row) { return '<tr>' + row.map(function (cell) { return '<td>' + agEscape(cell) + '</td>'; }).join('') + '</tr>'; }).join('')}</tbody></table></section>` : '';
-    const checklist = post.checklist ? `<section><h2>마지막 점검 목록</h2><ul class="check-list">${post.checklist.map(function (item) { return '<li>' + agEscape(item) + '</li>'; }).join('')}</ul></section>` : '';
-    const relatedHtml = related.length ? `<section class="related-posts"><h2>함께 보면 좋은 글</h2><ul>${related.map(function (item) { return '<li><a href="' + agPostUrl(item) + '">' + item.title + '</a></li>'; }).join('')}</ul></section>` : '';
+    const compareTitle = post.compare ? post.title.replace('쉽게 ', '').replace('정리', '').trim() + ' 비교표' : '';
+    const compare = post.compare ? `<section><h2>${compareTitle}</h2><table><tbody>${post.compare.map(function (row) { return '<tr>' + row.map(function (cell) { return '<td>' + agEscape(cell) + '</td>'; }).join('') + '</tr>'; }).join('')}</tbody></table></section>` : '';
+    const checklist = post.checklist ? `<section><h2>${post.title} 최종 점검</h2><ul class="check-list">${post.checklist.map(function (item) { return '<li>' + agEscape(item) + '</li>'; }).join('')}</ul></section>` : '';
+    const relatedHtml = related.length ? `<section class="related-posts"><h2>${AG_CATEGORIES[post.category]} 다음 학습 글</h2><ul>${related.map(function (item) { return '<li><a href="' + agPostUrl(item) + '">' + item.title + '</a></li>'; }).join('')}</ul></section>` : '';
 
     root.innerHTML = `<article class="article-detail">
       <span class="meta">${AG_CATEGORIES[post.category]} · ${post.type} · ${agFormatDate(post.publishAt)}</span>
       <h1>${post.title}</h1>
       <p class="lead">${post.problem}</p>
+      ${articleVisual(post)}
       <section><h2>${headingFor(post, '먼저 이해할 점')}</h2><p>${post.summary}</p>${post.details.map(function (text) { return '<p>' + text + '</p>'; }).join('')}</section>
       ${enhancedDetails(post)}
       ${compare}
-      <section><h2>${post.codeTitle} 예제</h2><pre><code>${agEscape(post.code)}</code></pre></section>
+      <section><h2>${post.codeTitle} 코드 예제</h2><pre><code>${agEscape(post.code)}</code></pre></section>
+      ${deepDive(post)}
       ${exampleGuide(post)}
       ${checklist}
       ${betterDocLink(post)}
